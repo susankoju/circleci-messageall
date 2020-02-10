@@ -1,0 +1,45 @@
+version: '3'
+services:
+        backend:
+      
+                build: ./back-end/
+                ports:
+                        - "4000:4000"
+                restart: always
+                expose:
+                        - 4000
+                depends_on:
+                        - db
+
+        db:
+                
+                image: mysql:latest
+                #build: ./database/
+                environment:
+                        MYSQL_ROOT_PASSWORD: root
+                        MYSQL_DATABASE: messageAll
+                        MYSQL_USER: user
+                        MYSQL_PASSWORD: root  
+                ports:
+                        - "3306:3306"  
+                 
+                command: --default-authentication-plugin=mysql_native_password
+                restart: always
+                
+                #entrypoint:
+                #       - /bin/sh
+                expose:
+                        - 3306
+                volumes:
+                        - ./database/:/docker-entrypoint-initdb.d
+                             
+
+        frontend:
+      
+                build:
+                        context: ./front-end/
+                ports: 
+                        - "9898:80" 
+                restart: always
+
+
