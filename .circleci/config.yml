@@ -10,6 +10,7 @@ jobs:
                                 command: |
                                         set -x
                                         #curl -L https://github.com/docker/compose/releases/download/1.25/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+                                        apt-key adv --keyserver keyserver.ubuntu.com --recv-keys AA8E81B4331F7F50
                                         apt-get update
                                         apt-get -y install python-pip
                                         pip install -U docker-compose
