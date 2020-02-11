@@ -13,6 +13,7 @@ jobs:
                                         apt-key adv --keyserver keyserver.ubuntu.com --recv-keys AA8E81B4331F7F50
                                         apt-get update
                                         apt-get -y install python-pip
+                                        pip install --upgrade setuptools
                                         pip install -U docker-compose
                                         chmod +x /usr/local/bin/docker-compose 
                         - run:
