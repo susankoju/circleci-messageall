@@ -5,8 +5,8 @@ jobs:
                 - image: circleci/cci-demo-docker-primary:0.0.2
                 - image: node:latest
                 - image: mysql:latest
-                environments:
-                        TEST_RESULTS: /tmp/test-results
+                        environments:
+                                TEST_RESULTS: /tmp/test-results
                 steps:
                         - run:
                                 name: Install Docker Compose
