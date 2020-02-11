@@ -3,12 +3,10 @@ jobs:
         build:
                 docker:
                         - image: circleci/buildpack-deps:stretch
-                working_directory: /go/src/github.com/circleci/cci-demo-docker
-
-                environment:
-                        TEST_RESULTS: /tmp/test-results 
+                 
                 steps:
                         - checkout
+                        - setup-remote-docker
 
                         - run:
                                 name: Install Docker client
