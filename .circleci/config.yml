@@ -40,5 +40,5 @@ jobs:
                                         echo "$DOCKER_PASS" | docker login --username $DOCKER_USER --password-stdin
                                         set -x
                                         docker-compose up -d
-                                        docker run --network container:contacts \
-                                                appropriate/curl --retry 10 --retry-delay 1 --retry-connrefused http://localhost:8080/contacts/test
+                                        #docker run --network container:contacts \
+                                        #appropriate/curl --retry 10 --retry-delay 1 --retry-connrefused http://localhost:8080/contacts/test
