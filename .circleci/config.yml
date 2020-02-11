@@ -7,7 +7,7 @@ jobs:
                 - image: mysql:latest
 
 
-                steps:
+        steps:
                         - run:
                                 name: Install Docker Compose
                                 command: |
