@@ -3,16 +3,14 @@ jobs:
         build:
                 docker:
                         - image: circleci/cci-demo-docker-primary:0.0.2
-                        - image: node:latest
-                        - image: mysql:latest
-
-
+                        
                 steps:
                         - run:
                                 name: Install Docker Compose
                                 command: |
                                         set -x
-                                        curl -L https://github.com/docker/compose/releases/download/1.25/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+                                        #curl -L https://github.com/docker/compose/releases/download/1.25/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+                                        pip install -U docker-compose
                                         chmod +x /usr/local/bin/docker-compose 
                         - run:
                                 name: Starting compose
