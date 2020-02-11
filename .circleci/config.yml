@@ -18,15 +18,7 @@ jobs:
                                         curl -L -o /tmp/docker-$VER.tgz https://get.docker.com/builds/Linux/x86_64/docker-$VER.tgz
                                         tar -xz -C /tmp -f /tmp/docker-$VER.tgz
                                         mv /tmp/docker/* /usr/bin
-                        - run:
-                                name: Set up docker
-                                command: |
-                                        if [[ $CIRCLE_SHELL_ENV == *"localbuild"* ]]; then
-                                                echo "export docker='sudo docker'" >> $BASH_ENV
-                                        else
-                                                echo "export docker='docker'" >> $BASH_ENV
-                                        fi
-
+                        
                         - run:
                                 name: Install Docker Compose
                                 command: |
@@ -45,6 +37,7 @@ jobs:
                         - run:
                                 name: Starting compose
                                 command: | 
+                                        echo "$DOCKER_PASS" | docker login --username $DOCKER_USER --password-stdin
                                         set -x
                                         docker-compose up -d
                                         docker run --network container:contacts \
