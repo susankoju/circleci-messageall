@@ -2,7 +2,7 @@ version: 2
 jobs:
         build:
                 docker:
-                        - image: circleci/cci-demo-docker-primary:0.0.2
+                        - image: circleci/buildpack-deps:stretch
                 working_directory: /go/src/github.com/circleci/cci-demo-docker
 
                 environment:
