@@ -3,7 +3,10 @@ jobs:
         build:
                 docker:
                         - image: circleci/cci-demo-docker-primary:0.0.2
-                        
+                working_directory: /go/src/github.com/circleci/cci-demo-docker
+
+                environment:
+                        TEST_RESULTS: /tmp/test-results 
                 steps:
                         - checkout
 
