@@ -19,6 +19,15 @@ jobs:
                                         tar -xz -C /tmp -f /tmp/docker-$VER.tgz
                                         mv /tmp/docker/* /usr/bin
                         - run:
+                                name: Set up docker
+                                command: |
+                                        if [[ $CIRCLE_SHELL_ENV == *"localbuild"* ]]; then
+                                                echo "export docker='sudo docker'" >> $BASH_ENV
+                                        else
+                                                echo "export docker='docker'" >> $BASH_ENV
+                                        fi
+
+                        - run:
                                 name: Install Docker Compose
                                 command: |
                                         set -x
