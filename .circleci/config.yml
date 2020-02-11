@@ -2,20 +2,22 @@ version: 2
 jobs:
 
         docker-compose:
-                - run:
-                        name: Install Docker Compose
-                        command: |
-                                set -x
-                                curl -L https://github.com/docker/compose/releases/download/1.25/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker=compose
+                - image: circleci/cci-demo-docker-primary:0.0.2
+                - image: node:latest
+                - image: mysql:latest
+                environments:
+                        TEST_RESULTS: /tmp/test-results
+                steps:
+                        - run:
+                                name: Install Docker Compose
+                                command: |
+                                        set -x
+                                        curl -L https://github.com/docker/compose/releases/download/1.25/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker=compose
                        
-
-
-
-        build:
-                - run:
-                        name: Starting compose
-                        command: | 
-                                set -x
-                                docker-compose up -d
-                                docker run --network container:contacts \
-                                        appropriate/curl --retry 10 --retry-delay 1 --retry-connrefused http://localhost:8080/cpmtacts/test
+                        - run:
+                                name: Starting compose
+                                command: | 
+                                        set -x
+                                        docker-compose up -d
+                                        docker run --network container:contacts \
+                                                appropriate/curl --retry 10 --retry-delay 1 --retry-connrefused http://localhost:8080/cpmtacts/test
